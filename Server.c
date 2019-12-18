@@ -60,7 +60,7 @@ int main(int argc, char *argv[]) {
 
 	//Espero y conecto al cliente
 	clientSocket = acceptClientConnection(serverSocket);
-	if(serverSocket == -1) {
+	if(clientSocket == -1) {
 		printf("No se puede abrir socket de cliente\n");
 		exit(-1);
 	}

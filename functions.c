@@ -14,12 +14,12 @@ int openInetConnection(char *Host_Servidor, char *Servicio) {
 	struct hostent *Host;
 	int Descriptor;
 
-	Puerto = getservbyname (Servicio, "tcp");
+	Puerto = getservbyname(Servicio, "tcp");
 	if (Puerto == NULL) {
 		return -1;
 	}
 
-	Host = gethostbyname (Host_Servidor);
+	Host = gethostbyname(Host_Servidor);
 	if (Host == NULL) {
 		return -1;
 	}
@@ -28,7 +28,7 @@ int openInetConnection(char *Host_Servidor, char *Servicio) {
 	Direccion.sin_addr.s_addr = ((struct in_addr *)(Host->h_addr))->s_addr;
 	Direccion.sin_port = Puerto->s_port;
 	
-	Descriptor = socket (AF_INET, SOCK_STREAM, 0);
+	Descriptor = socket(AF_INET, SOCK_STREAM, 0);
 	if (Descriptor == -1) {
 		return -1;
 	}
@@ -70,7 +70,7 @@ int openInetSocket(char *Servicio) {
 	}
 
 	//Se obtiene el servicio del fichero /etc/services
-	Puerto = getservbyname (Servicio, "tcp");
+	Puerto = getservbyname(Servicio, "tcp");
 	if(Puerto == NULL) {
 		return -1;
 	}
