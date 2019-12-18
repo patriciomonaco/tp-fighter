@@ -105,10 +105,10 @@ int main(int argc, char *argv[]) {
 			//Asigno los modificadores random
 			entities[i].maxHealthPoints += aleatorio(5,10);
 			entities[i].currentHealthPoints = entities[i].maxHealthPoints;
-			entities[i].attackPower += aleatorio(-3,3);
-			entities[i].defensePower += aleatorio(-3,3);
-			entities[i].healingPower += aleatorio(-3,3);
-			entities[i].speed += aleatorio(-3,3);
+			entities[i].attackPower += aleatorio(0,3);
+			entities[i].defensePower += aleatorio(0,3);
+			entities[i].healingPower += aleatorio(0,3);
+			entities[i].speed += aleatorio(0,3);
 		}
 	}
 	

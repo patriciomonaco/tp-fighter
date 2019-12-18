@@ -105,7 +105,7 @@ int writeSocket(int socket, char *chain, int length) {
 	if(written == -1) {
 		printf("Error en la escritura.\n");
 	} else {
-		printf("Bytes escritos: %d\n", written);
+		//printf("Bytes escritos: %d\n", written);
 	}
 
 	return written;
@@ -124,7 +124,7 @@ int readSocket(int socket, char *chain, int length) {
 	if(redd == -1) {
 		printf("Error en la lectura.\n");
 	} else {
-		printf("Bytes leidos: %d\n", redd);
+		//printf("Bytes leidos: %d\n", redd);
 	}
 
 	return redd;
