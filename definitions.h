@@ -1,7 +1,7 @@
 #ifndef _DEFINICIONES_H
 #define _DEFINICIONES_H
 
-#define LENGTH 2048
+#define LENGTH 1024
 #define ENTITIES 9
 #define HOST "localhost"
 #define SERVICE "tp-fighter"
