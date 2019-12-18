@@ -6,7 +6,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
-#include <errno.h>
 
 //Conecta con un servidor remoto a traves de socket INET
 int openInetConnection(char *Host_Servidor, char *Servicio) {
@@ -95,7 +94,6 @@ int openInetSocket(char *Servicio) {
 
 int writeSocket(int socket, char *chain, int length) {
 	int written = 0;
-	int aux = 0;
 
 	//Parametros correctos
 	if((socket == -1) || (chain == NULL) || (length < 1)) {
@@ -103,17 +101,11 @@ int writeSocket(int socket, char *chain, int length) {
 	}
 
 	//Escribo la cadena
-	while (written < length) {
-		aux = write(socket, chain + written, length - written);
-		if (aux > 0) {
-			written += aux;
-		} else {
-			if(aux == 0) {
-				return written;
-			} else {
-				return -1;
-			}
-		}
+	written = write(socket, chain, length);
+	if(written == -1) {
+		printf("Error en la escritura.\n");
+	} else {
+		printf("Bytes escritos: %d\n", written);
 	}
 
 	return written;
@@ -121,7 +113,6 @@ int writeSocket(int socket, char *chain, int length) {
 
 int readSocket(int socket, char *chain, int length) {
 	int redd = 0;
-	int aux = 0;
 
 	//Parametros correctos
 	if((socket == -1) || (chain == NULL) || (length < 1)) {
@@ -129,27 +120,11 @@ int readSocket(int socket, char *chain, int length) {
 	}
 
 	//Leo la cadena
-	while(redd < length) {
-		aux = read(socket, chain + redd, length - redd);
-		if(aux > 0) {
-			redd += aux;
-		} else {
-			if(aux == 0) { 
-				return redd;
-			}
-			if(aux == -1) {
-				//Tipo de error
-				switch(errno) {
-					case EINTR:
-					case EAGAIN:
-						printf("ERROR\n");
-						usleep (100);
-						break;
-					default:
-						return -1;
-				}
-			}
-		}
+	redd = read(socket, chain, length);
+	if(redd == -1) {
+		printf("Error en la lectura.\n");
+	} else {
+		printf("Bytes leidos: %d\n", redd);
 	}
 
 	return redd;
